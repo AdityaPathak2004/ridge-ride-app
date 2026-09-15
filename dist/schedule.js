@@ -1,5 +1,6 @@
 export const DATA={timezone:'America/New_York',season:'Fall 2026',updated:'2026-09-15',weekdays:[1,2,3,4,5],breaks:[610,970],villas:[430,450,470,490,510,530,550,590,610,630,650,670,690,710,730,750,770,790,810,830,850,870,890,910,930,950,970,990,1010,1030,1050,1070,1090,1110,1130,1150,1170,1190,1205,1230,1250,1265,1285,1310,1325,1350,1370],market:{stops:['Sweethome','Villas at Chestnut Ridge','UB Rensch Loop','Target','Wegmans'],rows:[[720,725,730,748,755],[780,785,790,805,815],[840,845,850,865,875],[900,905,910,null,null]]}};
-export const DEFAULTS={outbound:null,wait:null,inbound:null,villasWait:0,breakMode:'skip',singleBus:false};
+export const ROUTE_MODEL={minutes:5,observations:4,matches:4,confidence:(4+1)/(4+2)};
+export const DEFAULTS={outbound:ROUTE_MODEL.minutes,wait:0,inbound:ROUTE_MODEL.minutes,villasWait:0,breakMode:'skip',singleBus:false};
 export function localParts(now=new Date()){const p=Object.fromEntries(new Intl.DateTimeFormat('en-CA',{timeZone:DATA.timezone,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(now).map(p=>[p.type,p.value]));return {date:`${p.year}-${p.month}-${p.day}`,minute:+p.hour*60 + +p.minute,second:+p.second};}
 export function addDays(day,n){const d=new Date(day+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10);}
 export function dayOfWeek(day){return new Date(day+'T12:00:00Z').getUTCDay();}

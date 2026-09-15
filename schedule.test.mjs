@@ -12,7 +12,7 @@ assert.equal(upcoming(epoch(day,971),'campus')[0].minute,990);
 assert.equal(upcoming(epoch(day,1371),'campus')[0].serviceDate,'2026-09-16');
 assert.equal(upcoming(epoch('2026-09-18',1380),'campus')[0].serviceDate,'2026-09-21');
 assert.equal(daily('2026-09-20','campus').length,0);
-assert.equal(daily(day,'home').length,0);
+assert.equal(daily(day,'home').length,45);
 assert.equal(daily(day,'home',cfg)[0].minute,440);
 assert.equal(daily(day,'home',cfg)[0].arrival,epoch(day,448));
 const late={...cfg,outbound:90,wait:0};
