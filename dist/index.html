@@ -22,7 +22,7 @@
 </div></section>
 <section id="market" hidden><div class="market-intro"><span class="eyebrow">SATURDAYS ONLY</span><h2>A ride for your grocery run.</h2></div><div class="market-stops" id="marketStops"></div><div class="panel"><h2>Saturday stop times</h2><div id="marketTable"></div></div></section>
 <footer><span id="connection">Timetable available offline after first visit</span><span>Schedule entered Sep 15, 2026 · Fall 2026</span><p>Weekly pattern from your photos. Sunday, holidays, term dates, campus stop, and schedule changes have not been confirmed.</p></footer></main>
-<script type="module" src="app.js?v=4"></script>
+<script type="module" src="app.js?v=5"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script type="module">
 import {DATA, ROUTE_MODEL, localParts, time} from './schedule.js';
@@ -175,7 +175,7 @@ waitForLeaflet(function() {
   L.marker(route[0], {icon:pin}).addTo(map).bindTooltip('Villas at Chestnut Ridge', {permanent:false,direction:'top',className:'map-tooltip'});
   L.marker(route[route.length-1], {icon:pin}).addTo(map).bindTooltip('UB North Campus', {permanent:false,direction:'top',className:'map-tooltip'});
 
-  var busIco = L.divIcon({ className:'bus-marker', html:'<div class="bus-ping" style="width: 48px; height: 48px;"></div><img src="clean_bus.svg" style="width: 72px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" />', iconSize:[72,25], iconAnchor:[36,12] });
+  var busIco = L.divIcon({ className:'bus-marker', html:'<div class="bus-ping" style="width: 48px; height: 48px;"></div><img src="clean_bus.svg" style="width: 72px; height: 25px; max-width: 72px; max-height: 25px; object-fit: contain; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" />', iconSize:[72,25], iconAnchor:[36,12] });
   var busM = L.marker(route[0], {icon:busIco}).addTo(map);
 
   // Status bar
