@@ -8,6 +8,21 @@ export function epoch(day,minute){const target=Date.parse(day+'T00:00:00Z')+minu
 export function time(minute){const m=((minute%1440)+1440)%1440;return `${Math.floor(m/60)%12||12}:${String(m%60).padStart(2,'0')} ${m<720?'AM':'PM'}`;}
 export function dateLabel(day){return new Intl.DateTimeFormat('en-US',{weekday:'short',month:'short',day:'numeric',timeZone:'UTC'}).format(new Date(day+'T12:00:00Z'));}
 export function ready(s){return Number.isFinite(s.outbound)&&Number.isFinite(s.wait);}
-export function daily(day,direction,s=DEFAULTS){if(!DATA.weekdays.includes(dayOfWeek(day)))return [];if(direction==='home'&&!ready(s))return [];return DATA.villas.filter(m=>s.breakMode!=='skip'||!DATA.breaks.includes(m)).map(m=>{const dep=m+s.villasWait+(direction==='home'?s.outbound+s.wait:0);const ride=direction==='home'?s.inbound:s.outbound;return {serviceDate:day,minute:dep,at:epoch(day,dep),arrival:Number.isFinite(ride)?epoch(day,dep+ride):null,base:m,estimated:direction==='home',uncertain:DATA.breaks.includes(m)&&s.breakMode!=='skip'};});}
+export function daily(day,direction,s=DEFAULTS){
+  const dow=dayOfWeek(day);
+  if(dow===6){
+    const vIdx=DATA.market.stops.indexOf('Villas at Chestnut Ridge');
+    const cIdx=DATA.market.stops.indexOf('UB Rensch Loop');
+    const dIdx=direction==='home'?cIdx:vIdx;
+    return DATA.market.rows.map(r=>{
+      const dep=r[dIdx];
+      if(dep===null)return null;
+      return {serviceDate:day,minute:dep,at:epoch(day,dep),arrival:epoch(day,direction==='home'?r[vIdx]:r[cIdx]),base:dep,estimated:false,uncertain:false};
+    }).filter(x=>x!==null);
+  }
+  if(!DATA.weekdays.includes(dow))return [];
+  if(direction==='home'&&!ready(s))return [];
+  return DATA.villas.filter(m=>s.breakMode!=='skip'||!DATA.breaks.includes(m)).map(m=>{const dep=m+s.villasWait+(direction==='home'?s.outbound+s.wait:0);const ride=direction==='home'?s.inbound:s.outbound;return {serviceDate:day,minute:dep,at:epoch(day,dep),arrival:Number.isFinite(ride)?epoch(day,dep+ride):null,base:m,estimated:direction==='home',uncertain:DATA.breaks.includes(m)&&s.breakMode!=='skip'};});
+}
 export function upcoming(now,direction,s=DEFAULTS,count=3,exact=false){const day=localParts(new Date(now)).date;const threshold=exact?now:Math.floor(now/60000)*60000;const all=[];for(let i=-1;i<9;i++)all.push(...daily(addDays(day,i),direction,s));return all.filter(t=>t.at>=threshold).sort((a,b)=>a.at-b.at).slice(0,count);}
 export function conflicts(s){if(!s.singleBus||!ready(s)||!Number.isFinite(s.inbound))return [];const a=DATA.villas.filter(m=>s.breakMode!=='skip'||!DATA.breaks.includes(m));return a.slice(0,-1).filter((m,i)=>m+s.villasWait+s.outbound+s.wait+s.inbound>a[i+1]);}
