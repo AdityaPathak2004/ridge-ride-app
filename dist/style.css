@@ -9,7 +9,7 @@
   --card-border: rgba(255, 255, 255, 0.1);
 }
 * { box-sizing: border-box; }
-body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #000000; }
+body, html { margin: 0; padding: 0; width: 100vw; height: 100dvh; position: fixed; overflow: hidden; overscroll-behavior: none; background-color: #000000; }
 button, input, select { font: inherit; }
 button, a, input, select { -webkit-tap-highlight-color: transparent; }
 button { cursor: pointer; min-height: 46px; border: 0; background: transparent; }
@@ -25,7 +25,7 @@ a { color: inherit; text-decoration: none; }
 .brand small { display: block; font-size: 9px; letter-spacing: 2px; margin-top: 4px; font-weight: 600; color: var(--muted); }
 .logo { display: grid; place-items: center; background: #ffffff; color: #000000; border-radius: 10px; width: 36px; height: 36px; font-size: 22px; font-style: italic; font-weight: 800; }
 
-main { max-width: 1056px; margin: auto; position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-top: 55vh; padding-left: 24px; padding-right: 24px; padding-bottom: calc(120px + env(safe-area-inset-bottom, 30px)); z-index: 10; }
+main { max-width: 1056px; margin: auto; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100dvh; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-y: contain; padding-top: 55vh; padding-left: 24px; padding-right: 24px; padding-bottom: calc(120px + env(safe-area-inset-bottom, 30px)); z-index: 10; }
 .title-row { display: flex; justify-content: space-between; align-items: center; }
 .topline { color: var(--muted); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: flex; justify-content: space-between; }
 .eyebrow { color: var(--muted); }
