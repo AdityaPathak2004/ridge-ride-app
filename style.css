@@ -314,7 +314,7 @@ footer { color: var(--muted); font-size: 12px; padding: 40px 0 20px; display: fl
 @keyframes stroke { 100% { stroke-dashoffset: 0; } }
 
 /* Free Dark Mode Map Filter */
-.leaflet-layer,
+.leaflet-tile-pane,
 .leaflet-control-zoom-in,
 .leaflet-control-zoom-out,
 .leaflet-control-attribution {
