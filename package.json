@@ -1,1 +1,1 @@
-{"name":"ridge-ride","version":"1.0.0","private":true,"type":"module","dependencies":{"@capacitor/core":"^8.5.2","@capacitor/ios":"^8.5.2","@capacitor/local-notifications":"^8.3.1"},"devDependencies":{"@capacitor/cli":"^8.5.2","esbuild":"^0.28.2"}}
+{"name":"ridge-ride","version":"1.0.0","private":true,"type":"module","dependencies":{"@capacitor/core":"^8.5.2","@capacitor/ios":"^8.5.2","@capacitor/local-notifications":"^8.3.1"},"devDependencies":{"@capacitor/cli":"^8.5.2","esbuild":"^0.28.2","gh-pages":"^6.3.0"}}
