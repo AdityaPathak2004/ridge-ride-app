@@ -312,3 +312,11 @@ footer { color: var(--muted); font-size: 12px; padding: 40px 0 20px; display: fl
   animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.4s forwards;
 }
 @keyframes stroke { 100% { stroke-dashoffset: 0; } }
+
+/* Free Dark Mode Map Filter */
+.leaflet-layer,
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out,
+.leaflet-control-attribution {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
