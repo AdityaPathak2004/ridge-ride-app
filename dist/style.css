@@ -314,9 +314,10 @@ footer { color: var(--muted); font-size: 12px; padding: 40px 0 20px; display: fl
 @keyframes stroke { 100% { stroke-dashoffset: 0; } }
 
 /* Free Dark Mode Map Filter */
-.leaflet-tile,
+.leaflet-container img.leaflet-tile,
 .leaflet-control-zoom-in,
 .leaflet-control-zoom-out,
 .leaflet-control-attribution {
-  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%) !important;
+  -webkit-filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%) !important;
 }
